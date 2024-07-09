@@ -7,9 +7,7 @@
 html {
   font-family: 'Roboto Slab', sans-serif;
   line-height: 1.5;
-
   color: #ebe7ef;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -19,11 +17,11 @@ html {
 
 body {
   background: radial-gradient(
-      circle at top,
-      rgba(241, 210, 70, 0.98),
-      rgba(250, 176, 103, 0.87)
-    ),
-    url('bg-pattern-dark.png');
+          circle at top,
+          rgba(241, 210, 70, 0.98),
+          rgba(250, 176, 103, 0.87)
+  ),
+  url('bg-pattern-dark.png');
   background-repeat: repeat;
   background-size: 100% 100%, 30% 30%, 100% 100%;
   min-height: 110rem;
@@ -191,7 +189,7 @@ ol {
 }
 
 #game-over {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -202,6 +200,7 @@ ol {
   align-items: center;
   background-color: rgba(40, 38, 23, 0.95);
   animation: pop-in 0.5s cubic-bezier(0.68, -0.55, 0.65, 0.52) forwards;
+  z-index: 1000; /* Ensure modal is on top */
 }
 
 #game-over h2 {
@@ -220,7 +219,7 @@ ol {
 
 #game-over button {
   display: block;
-  margin: 0 auto;
+  margin: 1rem auto;
   font-size: 1.5rem;
   background: none;
   border: 2px solid #fcd256;
@@ -348,4 +347,82 @@ ol {
   100% {
     transform: scale(1);
   }
+}
+
+/* Modal Styles */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.modal {
+  background: white;
+  padding: 50px; /* Increased padding for larger size */
+  border-radius: 12px;
+  max-width: 600px; /* Increased maximum width */
+  width: 100%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  opacity: 0;
+  transform: scale(0.8);
+  animation: scaleIn 0.3s forwards;
+}
+
+@keyframes scaleIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.winner-message {
+  font-size: 2rem; /* Increased font size */
+  margin-bottom: 20px;
+  text-align: center;
+  color: #c3ba78; /* Dark yellow color */
+}
+
+
+button {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
 }
